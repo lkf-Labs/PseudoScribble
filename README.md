@@ -54,4 +54,15 @@ Input of `train.py`:
 --fp-gamma    # upper bound of the model’s uncertain region area     
 --fn-gamma    # lower bound of the model’s uncertain region area
 --remove-samll-object-area   # remove small target regions from the fp mask or fn mask
+--next-stage-strat   # the starting epoch for the second stage of training
 ```
+
+## Evaluation
+
+We provide the `test.py` file to evaluate the performance of the proposed model, along with code for testing the model's utility in the `script` folder.
+The command to test the model is as follows:
+```
+python3 test.py
+```
+Note: You need to adjust the parameter configuration area of the test.py code according to the comments.
+

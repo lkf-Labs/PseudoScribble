@@ -76,7 +76,7 @@ The command to test the model is as follows:
 ```
 python3 test.py
 ```
-Note: You need to adjust the parameter configuration area of the test.py code according to the comments.
+Note: You need to adjust the parameter configuration area of the `test.py` code according to the comments.
 
 ## Demo
 

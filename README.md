@@ -2,8 +2,8 @@
 ## PseudoScribble: Interactive Meibomian Gland Segmentation with Scribble Simulation
 
 <p align="center">
-  <img src="./assets/img/overview.png" alt="drawing", width="420" height="300"/>
-  <img src="./assets/img/two-stage_traing_strategy.png" alt="drawing", width="400" height="300"/>
+  <img src="./assets/img/overview.png" alt="drawing" width="420" height="300"/>
+  <img src="./assets/img/two-stage_traing_strategy.png" alt="drawing" width="400" height="300"/>
 </p>
 
 ## Environment

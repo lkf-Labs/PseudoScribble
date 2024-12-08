@@ -7,7 +7,7 @@
   <img src="./assets/img/two-stage_traing_strategy.png" alt="drawing" width="400" height="300"/>
 </p>
 In this study, we aim to develop an innovative interactive segmentation framework (PseudoScribble) for infrared meibography images. This is the first application of interactive segmentation technology in the field of infrared meibography images. We first parallelly introduce two error prediction decoders with the existing powerful segmentation backbone to predict false positive and false negative regions of the backbone's output. Considering that the false positive regions are mainly located at the gland edges due to the blurry gland boundaries, we introduce edge generation modules in the false positive decoder to more effectively capture the edge information. Inspired by the previous iterative sampling strategy, we design a pseudo-scribble generation strategy based on the two predicted error regions, allowing the model to automatically perform scribbling within the error regions, which approximates human interactive actions. By our approach, the model is capable of providing users with additional, helpful scribbles without requiring any effort from them.
- <img src="./assets/img/plot" alt="drawing"/>
+ <img src="./assets/img/plot.png" alt="drawing"/>
  Our proposed model achieves state-of-the-art performance on both our internal private dataset and the public dataset.
 
 ## Environment

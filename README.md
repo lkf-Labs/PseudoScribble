@@ -9,7 +9,7 @@ pip3 install -r requirements.txt
 ## Data
 We train and evaluate all our models on our internal private dataset MG-203 and the public dataset MGD-1K. The [MGD-1K](https://mgd1k.github.io/) dataset can be accessed online.
 
-We assume the data folder (`data_dir`) has the following structure:
+We assume the data folder (`datasets`) has the following structure:
 
 ```
 datasets

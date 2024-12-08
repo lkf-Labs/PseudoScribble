@@ -66,3 +66,7 @@ python3 test.py
 ```
 Note: You need to adjust the parameter configuration area of the test.py code according to the comments.
 
+## Demo
+
+We are developing an infrared meibomian gland image annotation and analysis system. It will incorporate the trained PseudoScribble and allow users to iteratively interact for precise annotation. Additionally, it will calculate various morphological parameters of the annotations to objectively assess the severity of meibomian gland dysfunction (MGD). The code will be released later.
+

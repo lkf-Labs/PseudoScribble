@@ -28,4 +28,4 @@ datasets
 ```
 
 ## Training
-Before training, please download the [$U^2-Net$](https://github.com/xuebinqin/U-2-Net) pretrained weights (click to download: [u2net.pth](https://drive.google.com/file/d/1ao1ovG1Qtx4b7EoskHXmi2E9rp5CHLcZ/view?pli=1), [u2netp.pth](https://drive.google.com/file/d/1rbSTGKAE-MTxBYHd-51l2hMOQPT_7EPy/view)) and configure the dowloaded path in [config.yml](https://github.com/uncbiag/SimpleClick/blob/main/config.yml).
+Before training, please download the [U<sup>2</sup>-Net](https://github.com/xuebinqin/U-2-Net) pretrained weights (click to download: [u2net.pth](https://drive.google.com/file/d/1ao1ovG1Qtx4b7EoskHXmi2E9rp5CHLcZ/view?pli=1), [u2netp.pth](https://drive.google.com/file/d/1rbSTGKAE-MTxBYHd-51l2hMOQPT_7EPy/view)) and configure the dowloaded path in [config.yml](https://github.com/uncbiag/SimpleClick/blob/main/config.yml).

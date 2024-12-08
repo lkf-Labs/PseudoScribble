@@ -1,0 +1,12 @@
+INTERACTIVE_MODELS_PATH: "./weights"
+EXPS_PATH: "./experiments"
+
+# Train datasets
+MeibomianGlands_PATH: "./datasets/MeibomianGlands"
+MGD1K_PATH: "./datasets/MGD-1K"
+
+# You can download the weights for U2-Net from the repository:
+# https://github.com/xuebinqin/U-2-Net
+IMAGENET_PRETRAINED_MODELS:
+  unet: "./pretrained_models/unet.pth"
+  u2netp: "./pretrained_models/u2netp.pth"

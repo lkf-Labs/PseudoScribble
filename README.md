@@ -1,5 +1,10 @@
-# PseudoScribble
+![overview](https://github.com/user-attachments/assets/aee7e9d4-36f2-461e-9dec-e7a5e20e5002)# PseudoScribble
 ## PseudoScribble: Interactive Meibomian Gland Segmentation with Scribble Simulation
+
+<p align="center">
+  <img src="./assets/img/overview.png" alt="drawing", width="420"/>
+  <img src="./assets/img/two-stage_traing_strategy.png" alt="drawing", width="400"/>
+</p>
 
 ## Environment
 Training and evaluation environment: Python3.9.4, PyTorch 2.3.1, CUDA 12.4. Run the following command to install required packages.

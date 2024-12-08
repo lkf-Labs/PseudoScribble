@@ -1,4 +1,4 @@
-![overview](https://github.com/user-attachments/assets/aee7e9d4-36f2-461e-9dec-e7a5e20e5002)# PseudoScribble
+# PseudoScribble
 ## PseudoScribble: Interactive Meibomian Gland Segmentation with Scribble Simulation
 
 <p align="center">

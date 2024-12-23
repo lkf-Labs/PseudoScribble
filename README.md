@@ -82,6 +82,6 @@ Note: You need to adjust the parameter configuration area of the `test.py` code 
 
 We are developing an infrared meibomian gland image annotation and analysis system. It will incorporate the trained PseudoScribble and allow users to iteratively interact for precise annotation. Additionally, it will calculate various morphological parameters of the annotations to objectively assess the severity of meibomian gland dysfunction (MGD). The code will be released later.
 
-## 
+## Acknowledgements
 This repository is built upon [RITM](https://github.com/SamsungLabs/ritm_interactive_segmentation), [U<sup>2</sup>-Net](https://github.com/xuebinqin/U-2-Net) and [BEA-Net](https://github.com/hulinkuang/BEA-Net). Thank the authors of these open source repositories for their efforts. And thank the ACs and reviewers for their effort when dealing with our paper.
 

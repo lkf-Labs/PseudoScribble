@@ -1,7 +1,7 @@
 # PseudoScribble
 ## PseudoScribble: Interactive Meibomian Gland Segmentation with Scribble Simulation
 
-## Introduction
+## 💡 Introduction
 
 <p align="center">
   <img src="./assets/img/overview.png" alt="drawing" width="420" height="300"/>
@@ -13,12 +13,12 @@
  
  **Our proposed model achieves state-of-the-art performance on both our internal private dataset and the public dataset.**
 
-## Environment
+## 🍇 Environment
 Training and evaluation environment: Python3.9.4, PyTorch 2.3.1, CUDA 12.4. Run the following command to install required packages.
 ```
 pip3 install -r requirements.txt
 ```
-## Data
+## 🏕️ Data
 We train and evaluate all our models on our internal private dataset MG-203 and the public dataset MGD-1K. The [MGD-1K](https://mgd1k.github.io/) dataset can be accessed online.
 
 We assume the data folder (`datasets`) has the following structure:
@@ -39,12 +39,12 @@ datasets
 │ └── metrics
 ```
 
-## Training
+## 🚀 Training 🔥🔥🔥
 
-### Pretrained models
+### 🦄 Pretrained models
 Before training, please download the [U<sup>2</sup>-Net](https://github.com/xuebinqin/U-2-Net) pretrained weights (click to download: [u2net.pth](https://drive.google.com/file/d/1ao1ovG1Qtx4b7EoskHXmi2E9rp5CHLcZ/view?pli=1), [u2netp.pth](https://drive.google.com/file/d/1rbSTGKAE-MTxBYHd-51l2hMOQPT_7EPy/view)) and configure the dowloaded path in [config.yml](config.yml).
 
-### training script
+### 🍇 training script
 We provide the scripts for training our models on the MGD-1K dataset. You can start training with the following commands:
 ```
 python3 train.py models/iter_mask/u2net_mgd1k_itermask_edge_pseudoscribble.py
@@ -53,7 +53,7 @@ python3 train.py models/iter_mask/u2net_mgd1k_itermask_edge_pseudoscribble.py
 --workers=4
 ```
 
-### Main training function
+### 📣 Main training function
 There are multiple input parameters in the `train.py` file, but most of them have default values.
 
 Input of `train.py`:
@@ -69,7 +69,7 @@ Input of `train.py`:
 --next-stage-strat   # the starting epoch for the second stage of training
 ```
 
-## Evaluation
+## 📍 Evaluation
 
 We provide the `test.py` file to evaluate the performance of the proposed model, along with code for testing the model's utility in the `script` folder.
 The command to test the model is as follows:
@@ -78,10 +78,10 @@ python3 test.py
 ```
 Note: You need to adjust the parameter configuration area of the `test.py` code according to the comments.
 
-## Demo
+## ⭐ Demo
 
 We are developing an infrared meibomian gland image annotation and analysis system. It will incorporate the trained PseudoScribble and allow users to iteratively interact for precise annotation. Additionally, it will calculate various morphological parameters of the annotations to objectively assess the severity of meibomian gland dysfunction (MGD). The code will be released later.
 
-## Acknowledgements
+## ✨ Acknowledgements
 This repository is built upon [RITM](https://github.com/SamsungLabs/ritm_interactive_segmentation), [U<sup>2</sup>-Net](https://github.com/xuebinqin/U-2-Net) and [BEA-Net](https://github.com/hulinkuang/BEA-Net). Thank the authors of these open source repositories for their efforts. And thank the ACs and reviewers for their effort when dealing with our paper.
 

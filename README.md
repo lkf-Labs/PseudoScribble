@@ -13,7 +13,7 @@
  
  **Our proposed model achieves state-of-the-art performance on both our internal private dataset and the public dataset.**
 
-## 🍇 Environment
+## 📍 Environment
 Training and evaluation environment: Python3.9.4, PyTorch 2.3.1, CUDA 12.4. Run the following command to install required packages.
 ```
 pip3 install -r requirements.txt

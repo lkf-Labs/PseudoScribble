@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>睑板腺智能分析与诊断系统</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/img/AIeye.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap">
+    <link rel="stylesheet" href="../static/css/active-learning-style.css">
+</head>
+<body>
+
+<button class="button-89 back-to-home-btn" role="button" onclick="window.location.href='/'">
+    <b>返 回</b>
+</button>
+<header class="page-header">
+    <h1><i class="fa-solid fa-brain"></i> 智能样本价值评估与主动筛选</h1>
+    <p class="lead-subtitle">智能筛选最有价值样本，最小化您的标注成本</p>
+    <p class="lead"><a href="https://github.com/lkf-Labs/AL-MGS"><b>Project Page</b></a></p>
+</header>
+
+<div class="main-content-container">
+
+        <div class="config-card" id="step1-strategy">
+        <h2 class="card-title">1. 策略与预算设置</h2>
+
+        <div class="form-group">
+            <label for="samplingStrategy" class="input-label">
+                <i class="fa-solid fa-bullseye"></i> 选择采样策略：
+            </label>
+            <select id="samplingStrategy">
+                <option value="PHS">PHS</option>
+                <option value="SDS">SDS</option>
+                <option value="Entropy">Entropy</option>
+                <option value="Dropout">Dropout</option>
+                <option value="TTA">TTA</option>
+                <option value="Core-set">Core-set</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="budgetCount" class="input-label">
+                <i class="fa-solid fa-calculator"></i> 标注预算（图像数量）：
+            </label>
+            <input type="number" id="budgetCount" value="10" min="0" step="5" placeholder="请输入要标注的图像数量">
+        </div>
+    </div>
+
+    <div class="config-card" id="step2-input">
+        <h2 class="card-title">2. 载入数据池</h2>
+        <div class="form-group">
+            <label for="datasetUpload" class="input-label">
+                <i class="fa fa-database"></i> 上传未标注数据集 (文件夹)：
+            </label>
+            <input type="file" id="datasetUpload" webkitdirectory directory multiple/>
+            <span id="datasetName" class="file-name-display">未选择任何文件夹</span>
+        </div>
+        <div class="form-group">
+            <label for="labeledDatasetUpload" class="input-label">
+                <i class="fa-solid fa-layer-group"></i> 上传已标注数据集 (文件夹)：
+            </label>
+            <input type="file" id="labeledDatasetUpload" webkitdirectory directory multiple/>
+            <span id="labeledDatasetName" class="file-name-display">未选择任何文件夹</span>
+        </div>
+
+    </div>
+
+    <div class="config-card" id="step3-input">
+        <h2 class="card-title">3. 载入模型</h2>
+
+        <div class="form-group">
+            <label for="modelUpload" class="input-label">
+                <i class="fa-solid fa-robot"></i> 上传用于筛选样本的模型 (.ckpt)：
+            </label>
+            <input type="file" id="modelUpload" accept=".ckpt"/>
+            <span id="modelName" class="file-name-display">未选择模型文件</span>
+        </div>
+    </div>
+
+    <div class="config-card" id="step4-save">
+    <h2 class="card-title">4. 指定保存位置</h2>
+    <div class="form-group">
+        <label class="input-label">
+            <i class="fa-solid fa-folder-open"></i> 选择保存待标注候选集的文件夹：
+        </label>
+        <button id="chooseFolderBtn" class="small-btn">选择文件夹</button>
+        <span id="folderName" class="file-name-display">未选择文件夹</span>
+    </div>
+</div>
+
+
+
+
+    <div class="action-section">
+        <button class="primary-action-btn" role="button" id="runActiveLearningBtn" disabled>
+            <i class="fa fa-play"></i> 开始筛选样本
+        </button>
+        <p id="statusMessage" class="status-message"></p>
+    </div>
+
+</div>
+<script src="../static/js/active-learning-script.js"></script>
+</body>
+</html>

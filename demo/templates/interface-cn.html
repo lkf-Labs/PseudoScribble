@@ -1,0 +1,200 @@
+<head>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet"
+          type='text/css'>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script type="text/javascript" src="../static/js/jquery-2.2.1.min.js"></script>
+    <script src="../static/js/vue-color-2.8.1.min.js"></script>
+    <script src="../static/js/vue-2.6.14.js"></script>
+    <title>睑板腺智能分析与诊断系统</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/img/AIeye.png">
+</head>
+
+<h1 class="animated rotateIn">交互式标注与量化分析系统</h1>
+<p class="lead-subtitle">智能标注与修正，实时量化睑板腺特征，提高MGD分析效率</p>
+<p class="lead"><a href="https://github.com/ljw-fzu/PseudoScribble"><b>Project Page</b></a></p>
+
+<div class="total-container">
+    <button class="button-89 back-to-home-btn" role="button" onclick="window.location.href='/'">
+        <b>返 回</b>
+    </button>
+    <div id="leftContainer" class="left-container">
+        <div class="avatar-upload">
+            <div class="avatar-edit">
+                <input type="file" id="imageUpload" accept=".png, .jpg, .jpeg"/>
+                <label for="imageUpload"></label>
+            </div>
+            <div class="result-color-edit">
+                <button onclick="showColorPicker()" id="colorPickerBtn"></button>
+
+                <div id="colorPicker" class="vue-color-picker">
+                    <div class="vue-color-picker-container">
+                        <div id="vue_sketch_picker">
+                            <color-picker id="colorPalette" v-model="colors" @input="updateValue"></color-picker>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <canvas id="sourceCanvas" class="source-canvas"></canvas>
+        </div>
+        <select-box>
+            <span class="placeholder" style="color: white">选择点击类型:</span>
+            <select name='options' id="pointType" style="position: relative;">
+                <option value='foreground'>正点击（前景）</option>
+                <option value='background'>负点击（背景）</option>
+            </select>
+        </select-box>
+        <div class="rolling-slider">
+            <span class="placeholder" float="left" style="color: white">选择点击半径:</span>
+            <input id="slider" name="slider" type="range" value=50 step="10">
+            <label for="slider">5</label>
+        </div>
+        <div class="pseudo-scribble-row">
+            <div class="form-row-inline">
+                <label for="pseudoScribbleToggle" style="margin-right: -130px;">启用伪涂鸦:</label>
+                <div id="pseudoScribbleToggle" class="toggle-switch active"></div>
+
+                <label for="scribbleCount" style="margin-left: -80px; margin-right: -100px">伪涂鸦生成数量:</label>
+                <input type="number" id="scribbleCount" value="1" min="0" step="1" style="width: 60px;">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="right-container">
+        <div class="avatar-result">
+            <canvas id="resultCanvas" class="result-canvas"></canvas>
+        </div>
+        <!-- 按钮组 -->
+        <div class="button-row">
+            <div class="select-button-container">
+                <button class="button-89" role="button" id="sendBtn"><b>提 交</b></button>
+            </div>
+            <div class="select-button-container">
+                <button class="button-89" role="button" id="resetBtn"><b>撤 销</b></button>
+            </div>
+            <div class="select-button-container">
+                <button class="button-89" role="button" id="revertBtn"><b>回 退</b></button>
+            </div>
+            <div class="select-button-container">
+                <button class="button-89" role="button" id="clearBtn"><b>清 除</b></button>
+            </div>
+            <div class="select-button-container">
+                <button class="button-89" role="button" id="saveBtn"><b>保 存</b></button>
+            </div>
+        </div>
+
+        <div class="morph-col">
+            <div class="morph-col-content" style="margin-top: 90px;">
+                <label for="px-mm-ratio">
+              <span style="cursor: help;" title="设置像素到毫米的换算比例">
+                🛈
+              </span>
+                    转换比例 (mm/px):
+                </label>
+                <input type="number" id="px-mm-ratio" value="0.026" step="0.001" min="0" style="width: 100px;">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="morph-wrapper">
+        <div class="morph-section">
+            <!-- Patient Information: 占大宽度 -->
+            <div class="morph-col patient-info">
+                <div class="morph-col-title">患者检查信息</div>
+                <div class="morph-col-content">
+                    <form class="patient-form">
+                        <!-- 左列 -->
+                        <div class="form-col">
+                            <div class="form-row">
+                                <label for="name">姓名:</label>
+                                <input type="text" id="name" placeholder="请输入患者姓名">
+                            </div>
+                            <div class="form-row">
+                                <label for="sex">性别:</label>
+                                <select id="sex">
+                                    <option value="">请选择</option>
+                                    <option value="female">女</option>
+                                    <option value="male">男</option>
+                                </select>
+                            </div>
+                            <div class="form-row">
+                                <label for="age">年龄:</label>
+                                <input type="number" id="age" placeholder="请输入患者年龄">
+                            </div>
+                        </div>
+
+                        <!-- 右列 -->
+                        <div class="form-col">
+                            <div class="form-row">
+                                <label for="eye">眼睑部位:</label>
+                                <select id="eye">
+                                    <option value="">请选择</option>
+                                    <option value="left upper eyelid">左上眼睑</option>
+                                    <option value="right upper eyelid">右上眼睑</option>
+                                    <option value="left lower eyelid">左下眼睑</option>
+                                    <option value="right lower eyelid">右下眼睑</option>
+                                </select>
+                            </div>
+                            <div class="form-row">
+                                <label for="exam-date">就诊日期:</label>
+                                <input type="text" id="exam-date" placeholder="YYYY-MM-DD">
+                            </div>
+                            <div class="form-row">
+                                <label for="meiboscore">Meiboscore:</label>
+                                <select id="meiboscore">
+                                    <option value="">请选择</option>
+                                    <option value="0">0 - 正常</option>
+                                    <option value="1">1 - 轻度</option>
+                                    <option value="2">2 - 中度</option>
+                                    <option value="3">3 - 重度</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- 单腺体形态参数-->
+            <div class="morph-col">
+                <div class="morph-col-title">单个睑板腺指标</div>
+                <div class="morph-col-content">
+                    睑板腺序号: <span id="gland-number">--</span><br>
+                    睑板腺长度: <span id="gland-length">--</span> mm<br>
+                    睑板腺宽度: <span id="gland-width">--</span> mm<br>
+                    睑板腺弯曲度: <span id="gland-curvature">--</span><br>
+                    睑板腺面积: <span id="gland-area">--</span> mm²<br>
+                </div>
+            </div>
+
+            <!-- 总形态参数 -->
+            <div class="morph-col">
+                <div class="morph-col-title">总体睑板腺指标</div>
+                <div class="morph-col-content">
+                    睑板腺数量: <span id="overall-gland-number">--</span><br>
+                    睑板腺平均长度: <span id="average-gland-length">--</span> mm<br>
+                    睑板腺平均宽度: <span id="average-gland-width">--</span> mm<br>
+                    睑板腺平均弯曲度: <span id="average-gland-curvature">--</span><br>
+                    睑板腺平均面积: <span id="average-gland-area">--</span> mm²<br>
+                </div>
+            </div>
+            <!-- ✅ 导出 Excel 按钮 -->
+            <button class="button-89 export-btn" role="button" id="exportExcelBtn">
+                <b>导出到 Excel</b>
+            </button>
+        </div>
+    </div>
+
+
+</div>
+
+
+<script src="../static/js/all-js.js" charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    flatpickr("#exam-date", {
+        dateFormat: "Y-m-d", // YYYY-MM-DD
+        locale: "en"          // 英文显示
+    });
+</script>

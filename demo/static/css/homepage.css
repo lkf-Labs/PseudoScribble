@@ -1,0 +1,94 @@
+/* homepage.css 关键样式 */
+
+body {
+    background-color: #121212; /* 深色背景 */
+    color: #e0e0e0; /* 浅色文本 */
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    min-height: 100vh;
+}
+
+/* Header 样式 */
+.main-header {
+    padding: 60px 20px 20px;
+}
+.system-title {
+    font-size: 2.5em;
+    color: #00CED1; /* 科技青色 */
+    margin-bottom: 5px;
+}
+.system-subtitle {
+    font-size: 1em;
+    color: #888;
+}
+
+/* 主入口卡片容器 */
+.entry-points-container {
+    display: flex; /* 启用 Flex 布局 */
+    justify-content: center; /* 水平居中 */
+    gap: 40px; /* 卡片之间的间距 */
+    padding: 50px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 单个入口卡片样式 */
+.entry-card {
+    text-decoration: none;
+    color: inherit;
+    background: #1e1e1e; /* 略浅的深色背景 */
+    border-radius: 12px;
+    padding: 30px;
+    width: 40%; /* 保证两卡片并排 */
+    max-width: 450px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid #333; /* 细微的边框 */
+    cursor: pointer;
+}
+
+.entry-card:hover {
+    transform: translateY(-5px); /* 悬停时上浮 */
+    box-shadow: 0 15px 30px rgba(0, 206, 209, 0.2); /* 悬停时发光 */
+    border-color: #00CED1;
+}
+
+.card-icon {
+    font-size: 3em;
+    color: #00CED1;
+    margin-bottom: 15px;
+}
+
+.card-title {
+    font-size: 1.5em;
+    margin-top: 0;
+    color: #e0e0e0;
+}
+
+.card-description {
+    color: #bbb;
+    font-size: 0.9em;
+    line-height: 1.6;
+}
+
+.cta-button {
+    display: inline-block;
+    margin-top: 20px;
+    color: #00CED1;
+    font-weight: bold;
+    border-bottom: 2px solid #00CED1;
+    padding-bottom: 5px;
+}
+
+/* 媒体查询：适应小屏幕 */
+@media (max-width: 800px) {
+    .entry-points-container {
+        flex-direction: column; /* 小屏幕上垂直堆叠 */
+        align-items: center;
+    }
+    .entry-card {
+        width: 80%; /* 占宽更多 */
+        margin-bottom: 20px;
+    }
+}

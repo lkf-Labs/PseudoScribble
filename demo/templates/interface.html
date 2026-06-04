@@ -1,0 +1,198 @@
+<head>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet"
+          type='text/css'>
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/img/AIeye.png">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script type="text/javascript" src="../static/js/jquery-2.2.1.min.js"></script>
+    <script src="../static/js/vue-color-2.8.1.min.js"></script>
+    <script src="../static/js/vue-2.6.14.js"></script>
+</head>
+
+<h1 class="animated rotateIn">PseudoScribble Interactive Interface</h1>
+<p class="lead"><a href="https://github.com/ljw-fzu/PseudoScribble"><b>Project Page</b></a></p>
+
+<div class="total-container">
+    <button class="button-89 back-to-home-btn" role="button" onclick="window.location.href='/'">
+        <b>Return Home</b>
+    </button>
+    <div id="leftContainer" class="left-container">
+        <div class="avatar-upload">
+            <div class="avatar-edit">
+                <input type="file" id="imageUpload" accept=".png, .jpg, .jpeg"/>
+                <label for="imageUpload"></label>
+            </div>
+            <div class="result-color-edit">
+                <button onclick="showColorPicker()" id="colorPickerBtn"></button>
+
+                <div id="colorPicker" class="vue-color-picker">
+                    <div class="vue-color-picker-container">
+                        <div id="vue_sketch_picker">
+                            <color-picker id="colorPalette" v-model="colors" @input="updateValue"></color-picker>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <canvas id="sourceCanvas" class="source-canvas"></canvas>
+        </div>
+        <select-box>
+            <span class="placeholder" style="color: white">Choose click type:</span>
+            <select name='options' id="pointType" style="position: relative;">
+                <option value='foreground'>Foreground</option>
+                <option value='background'>Background</option>
+            </select>
+        </select-box>
+        <div class="rolling-slider">
+            <span class="placeholder" float="left" style="color: white">Choose click size:</span>
+            <input id="slider" name="slider" type="range" value=50 step="10">
+            <label for="slider">5</label>
+        </div>
+        <div class="pseudo-scribble-row">
+            <div class="form-row-inline">
+                <label for="pseudoScribbleToggle" style="margin-right: -30px;">Enable pseudo scribble:</label>
+                <div id="pseudoScribbleToggle" class="toggle-switch active"></div>
+
+                <label for="scribbleCount" style="margin-left: -100px;">Number of pseudo scribble:</label>
+                <input type="number" id="scribbleCount" value="1" min="0" step="1" style="width: 60px;">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="right-container">
+        <div class="avatar-result">
+            <canvas id="resultCanvas" class="result-canvas"></canvas>
+        </div>
+        <!-- 按钮组 -->
+        <div class="button-row">
+            <div class="select-button-container">
+                <button class="button-89" role="button" id="sendBtn"><b>Submit</b></button>
+            </div>
+            <div class="select-button-container">
+                <button class="button-89" role="button" id="resetBtn"><b>Reset</b></button>
+            </div>
+            <div class="select-button-container">
+                <button class="button-89" role="button" id="revertBtn"><b>Revert</b></button>
+            </div>
+            <div class="select-button-container">
+                <button class="button-89" role="button" id="clearBtn"><b>Clear</b></button>
+            </div>
+            <div class="select-button-container">
+                <button class="button-89" role="button" id="saveBtn"><b>Save</b></button>
+            </div>
+        </div>
+
+        <div class="morph-col">
+            <div class="morph-col-content" style="margin-top: 90px;">
+                <label for="px-mm-ratio">
+              <span style="cursor: help;" title="Set the conversion ratio from pixels to millimeters.">
+                🛈
+              </span>
+                    Conversion ratio (mm/px):
+                </label>
+                <input type="number" id="px-mm-ratio" value="0.026" step="0.001" min="0" style="width: 100px;">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="morph-wrapper">
+        <div class="morph-section">
+            <!-- Patient Information: 占大宽度 -->
+            <div class="morph-col patient-info">
+                <div class="morph-col-title">Patient Information</div>
+                <div class="morph-col-content">
+                    <form class="patient-form">
+                        <!-- 左列 -->
+                        <div class="form-col">
+                            <div class="form-row">
+                                <label for="name">Name:</label>
+                                <input type="text" id="name" placeholder="Enter name">
+                            </div>
+                            <div class="form-row">
+                                <label for="sex">Sex:</label>
+                                <select id="sex">
+                                    <option value="">Select</option>
+                                    <option value="female">Female</option>
+                                    <option value="male">Male</option>
+                                </select>
+                            </div>
+                            <div class="form-row">
+                                <label for="age">Age:</label>
+                                <input type="number" id="age" placeholder="Enter age">
+                            </div>
+                        </div>
+
+                        <!-- 右列 -->
+                        <div class="form-col">
+                            <div class="form-row">
+                                <label for="eye">Eye:</label>
+                                <select id="eye">
+                                    <option value="">Select</option>
+                                    <option value="left upper eyelid">Left Upper Eyelid</option>
+                                    <option value="right upper eyelid">Right Upper Eyelid</option>
+                                    <option value="left lower eyelid">Left Lower Eyelid</option>
+                                    <option value="right lower eyelid">Right Lower Eyelid</option>
+                                </select>
+                            </div>
+                            <div class="form-row">
+                                <label for="exam-date">Exam Date:</label>
+                                <input type="text" id="exam-date" placeholder="YYYY-MM-DD">
+                            </div>
+                            <div class="form-row">
+                                <label for="meiboscore">Meiboscore:</label>
+                                <select id="meiboscore">
+                                    <option value="">Select</option>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- 单腺体形态参数-->
+            <div class="morph-col">
+                <div class="morph-col-title">Single Gland Metrics</div>
+                <div class="morph-col-content">
+                    Gland Number: <span id="gland-number">--</span><br>
+                    Gland Length: <span id="gland-length">--</span> mm<br>
+                    Gland Width: <span id="gland-width">--</span> mm<br>
+                    Gland Curvature: <span id="gland-curvature">--</span><br>
+                    Gland Area: <span id="gland-area">--</span> mm²<br>
+                </div>
+            </div>
+
+            <!-- 总形态参数 -->
+            <div class="morph-col">
+                <div class="morph-col-title">Overall Gland Metrics</div>
+                <div class="morph-col-content">
+                    Number of Glands: <span id="overall-gland-number">--</span><br>
+                    Average Length of Glands: <span id="average-gland-length">--</span> mm<br>
+                    Average Width of Glands: <span id="average-gland-width">--</span> mm<br>
+                    Average Curvature of Glands: <span id="average-gland-curvature">--</span><br>
+                    Average Glands Area: <span id="average-gland-area">--</span> mm²<br>
+                </div>
+            </div>
+            <!-- ✅ 导出 Excel 按钮 -->
+            <button class="button-89 export-btn" role="button" id="exportExcelBtn">
+                <b>Export to Excel</b>
+            </button>
+        </div>
+    </div>
+
+
+</div>
+
+
+<script src="../static/js/all-js.js" charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    flatpickr("#exam-date", {
+        dateFormat: "Y-m-d", // YYYY-MM-DD
+        locale: "en"          // 英文显示
+    });
+</script>

@@ -1,0 +1,233 @@
+/* 基础设置，假设继承了首页的深色背景 */
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Montserrat', sans-serif;
+}
+.back-to-home-btn {
+    position: absolute;
+    /* 定位到最右上角 */
+    right: 30px;
+    top: 30px;
+    z-index: 1000;
+
+    /* 保持与交互式页面 Export 按钮相似的紧凑尺寸，如果需要 */
+    --s: .3em;
+    padding: calc(.4em + var(--s)) calc(.8em + var(--s));
+    font-size: 14px;
+
+    /* 调整主颜色，确保与科技青色主题一致 */
+    --color: #00CED1;
+}
+
+/* Hyperlink Style*/
+a {
+    position: relative;
+    display: inline-block;
+    transition: .3s;
+    text-decoration: none;
+    color: #00CED1; /* 科技青色链接 */
+}
+
+a::before {
+    position: absolute;
+    bottom: .0em;
+    left: 0;
+    content: '';
+    width: 100%;
+    height: 3px;
+    background-color: #ad1823;
+    opacity: 0;
+    transition: .3s;
+}
+
+a:hover::before {
+    bottom: -5;
+    opacity: 1;
+}
+
+a:hover {
+    color: #ad1823;
+}
+
+/* 调整按钮内部图标和文字的间距 */
+.back-to-home-btn i {
+    margin-right: 5px;
+}
+
+/* Button Style */
+.button-89 {
+    --b: 3px;   /* border thickness */
+    --s: .45em; /* size of the corner */
+    --color: #00CED1; /* 颜色替换 18: 默认按钮颜色 */
+
+    padding: calc(.5em + var(--s)) calc(.9em + var(--s));
+    color: var(--color);
+    --_p: var(--s);
+    background:
+        conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0)
+        var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+    transition: .3s linear, color 0s, background-color 0s;
+    outline: var(--b) solid #0000;
+    outline-offset: .6em;
+    font-size: 16px;
+
+    border: 0;
+
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button-89:hover,
+.button-89:focus-visible{
+    --_p: 0px;
+    outline-color: var(--color);
+    outline-offset: .05em;
+}
+
+.button-89:active {
+    background: var(--color);
+    color: #121212; /* 颜色替换 19: 激活时深色文字 */
+}
+/* 页面头部 */
+.page-header {
+    padding: 40px 20px 20px;
+    text-align: center;
+}
+.page-header h1 {
+    color: #00CED1;
+    font-size: 2em;
+}
+.lead-subtitle {
+    color: #bbb;
+}
+.back-link {
+    color: #007BFF;
+    text-decoration: none;
+    margin-top: 15px;
+    display: inline-block;
+}
+
+/* 主内容区 */
+.main-content-container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+/* 配置卡片 */
+.config-card {
+    background: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.card-title {
+    color: #00CED1;
+    border-bottom: 2px solid #333;
+    padding-bottom: 10px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.4em;
+}
+
+/* 表单组 */
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #bbb;
+    font-weight: bold;
+}
+.input-label i {
+    margin-right: 8px;
+    color: #00CED1;
+}
+
+/* 文件输入框和选择框样式 */
+input[type="file"], select, input[type="number"] {
+    background: #2a2a2a;
+    border: 1px solid #444;
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 1em;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 5px;
+}
+
+/* 文件名/路径显示 */
+.file-name-display {
+    display: block;
+    margin-top: 8px;
+    color: #777;
+    font-size: 0.9em;
+    padding: 8px 10px;
+    border: 1px dashed #444;
+    border-radius: 4px;
+}
+
+.file-name-display.selected {
+    color: #90ee90; /* 选中后变绿色 */
+    border-color: #00CED1;
+}
+
+/* 按钮样式 (继承或自定义) */
+.action-section {
+    text-align: center;
+    padding: 30px 0;
+}
+.primary-action-btn {
+    /* 假设 button-89 样式已定义 */
+    background-color: #00CED1;
+    border-color: #00CED1;
+    color: #121212;
+    font-size: 1.2em;
+    padding: 15px 40px;
+    transition: background-color 0.3s;
+}
+
+.primary-action-btn:disabled {
+    background-color: #555;
+    border-color: #555;
+    cursor: not-allowed;
+}
+
+.status-message {
+    margin-top: 20px;
+    color: yellow; /* 状态信息颜色 */
+}
+
+/* 文件夹选择按钮 (小一些) */
+.small-btn {
+    padding: 8px 15px;
+    font-size: 0.9em;
+    margin-top: 5px;
+    width: auto;
+    background-color: #00CED1;
+}
+
+/* 聚焦效果 */
+input:focus, select:focus, textarea:focus {
+    /* 1. 移除浏览器默认的轮廓线 */
+    outline: none;
+
+    /* 2. 应用您指定的主题色边框 */
+    border-color: #00CED1;
+
+    /* 3. 应用您指定的主题色阴影 */
+    box-shadow: 0 0 5px rgba(0, 206, 209, 0.5);
+
+    /* 4. 应用聚焦背景色 */
+    background: rgba(55, 55, 55, 0.7);
+}
